@@ -7,6 +7,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,10 +27,12 @@ public class EducacionController {
     @Autowired
     EducacionService educacionService;
 
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/educacion")
     public void crearEducacion(@RequestBody Educacion educacion) {
         educacionService.crearEducacion(educacion);
     }
+
     /*Método GET*/
     @GetMapping("/educacion/all")
     public ResponseEntity<List<Educacion>> getAllEstudios() {
@@ -61,18 +64,21 @@ public class EducacionController {
     }
 
     /*Método PUT*/
+    @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("/modifica/educacion")
     public void modificarEducacion(@RequestBody Educacion educacion) {
         educacionService.modificarEducacion(educacion);
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("/educacion/update")
     public ResponseEntity<Educacion> updateEducacion(@RequestBody Educacion educacion) {
         Educacion updateEducacion = educacionService.updateEstudios(educacion);
         return new ResponseEntity<>(updateEducacion, HttpStatus.OK);
     }
 
-    /*Método DELETE */
+    /*Método DELETE I use "preautorize" to request a role to execute the method*/
+    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/educacion/{id}")
     public void borrarEducacion(@PathVariable Long id) {
         educacionService.borrarEducacion(id);

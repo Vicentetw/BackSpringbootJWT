@@ -7,6 +7,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -51,20 +52,24 @@ public class ExperienciaController {
     }
 
     
-    /*Método PUT*/
+    /*Método PUT I use "preautorize" to request a role to execute the method */
+    @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("/modifica/experiencia")
-    public void modificarExperiencia(@RequestBody Experiencia experiencia) {
+    public ResponseEntity<Experiencia> modificarExperiencia(@RequestBody Experiencia experiencia) {
         experienciaService.modificarExperiencia(experiencia);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
- 
+  
 
-    /*Método POST*/
+    /*Método POST I use "preautorize" to request a role to execute the method */
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/experiencia")
     public void crearExperiencia(@RequestBody Experiencia experiencia) {
         experienciaService.crearExperiencia(experiencia);
     }
 
-    /*Método DELETE */
+    /*Método DELETE I use "preautorize" to request a role to execute the method */
+    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/experiencia/{id}")
     public void borrarExperiencia(@PathVariable Long id) {
         experienciaService.borrarExperiencia(id);
