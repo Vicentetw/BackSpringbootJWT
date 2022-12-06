@@ -1,6 +1,7 @@
 /*Perrotta Vicente Grupo 141 */
 package com.myApi.SpringBoot.Controller;
 
+
 import com.myApi.SpringBoot.Model.Experiencia;
 import com.myApi.SpringBoot.Service.ExperienciaService;
 import java.util.List;
@@ -40,6 +41,7 @@ public class ExperienciaController {
         return experienciaService.listarExperiencias();
     }
     
+        
     @GetMapping ("/experiencia/obtener/{id}")
     @ResponseBody
     public Experiencia obtenerExperiencia(@PathVariable Long id) {
@@ -68,6 +70,7 @@ public class ExperienciaController {
         experienciaService.crearExperiencia(experiencia);
     }
 
+      
     /*Método DELETE I use "preautorize" to request a role to execute the method */
     @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/experiencia/{id}")
