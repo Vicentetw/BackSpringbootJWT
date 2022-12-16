@@ -4,11 +4,13 @@ package com.myApi.SpringBoot.Service;
 import com.myApi.SpringBoot.Model.Educacion;
 import com.myApi.SpringBoot.Repository.EducacionRepository;
 import java.util.List;
+import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
 @Service
+@Transactional
 public class EducacionService implements IEducacionService{
 
  @Autowired
@@ -57,7 +59,9 @@ public class EducacionService implements IEducacionService{
 return repositorioEducacion.findByTituloLike(titulo);
 }
 
-   
+   public boolean existsByTitulo(String titulo){
+   return repositorioEducacion.existsByTitulo(titulo);
+           }
 
  
 }

@@ -12,7 +12,7 @@ import org.springframework.web.filter.CorsFilter;
 @SpringBootApplication
 public class Application {
 
-    @Bean
+   @Bean
     public BCryptPasswordEncoder bCryptPasswordEncoder() {
         return new BCryptPasswordEncoder();
     }
@@ -20,11 +20,13 @@ public class Application {
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
     }
-    
-      @Bean public CorsFilter corsFilter() { CorsConfiguration
-      corsConfiguration = new CorsConfiguration();
+    /*corsConfiguration.setAllowedOrigins(Arrays.asList("https://perrotta-vicente.web.app/"));*/
+      
+    @Bean
+    public CorsFilter corsFilter() {
+      CorsConfiguration corsConfiguration = new CorsConfiguration();
       corsConfiguration.setAllowCredentials(true);
-      corsConfiguration.setAllowedOrigins(Arrays.asList("https://perrotta-vicente.web.app/"));
+      corsConfiguration.setAllowedOrigins(Arrays.asList("http://localhost:8080"));
       corsConfiguration.setAllowedHeaders(Arrays.asList("Origin",
       "Access-Control-Allow-Origin", "Content-Type", "Accept", "Authorization",
       "Origin, Accept", "X-Request-With", "Access-Control-Request-Method",
@@ -33,10 +35,10 @@ public class Application {
       "Content-type", "Accept", "Authorization", "Access-Control-Allow-Origin",
       "Access-Control-Allow-Origin", "Access-Control-Allow-Credentials"));
       corsConfiguration.setAllowedMethods(Arrays.asList("GET", "PUT", "POST",
-      "DELETE", "OPTIONS")); UrlBasedCorsConfigurationSource
-      urlBasedCorsConfigurationSource = new UrlBasedCorsConfigurationSource();
-      urlBasedCorsConfigurationSource.registerCorsConfiguration("/**",
-      corsConfiguration); return new
-      CorsFilter(urlBasedCorsConfigurationSource); }
+      "DELETE", "OPTIONS")); 
+      UrlBasedCorsConfigurationSource  urlBasedCorsConfigurationSource = new UrlBasedCorsConfigurationSource();
+      urlBasedCorsConfigurationSource.registerCorsConfiguration("/**", corsConfiguration);
+      return new CorsFilter(urlBasedCorsConfigurationSource);
+    }
      
 }
