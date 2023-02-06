@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package com.myApi.SpringBoot.Security.Entity;
+
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -10,14 +11,14 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-
 /**
  *
  * @author EURO
  */
-public class UsuarioPrincipal implements UserDetails{
+public class UsuarioPrincipal implements UserDetails {
+
     private String nombre;
-    private String nombreUsuario;
+    private String userName;
     private String email;
     private String password;
     private Collection<? extends GrantedAuthority> authorities;
@@ -25,19 +26,21 @@ public class UsuarioPrincipal implements UserDetails{
     public UsuarioPrincipal() {
     }
 
-    public UsuarioPrincipal(String nombre, String nombreUsuario, String email, String password, Collection<? extends GrantedAuthority> authorities) {
+    public UsuarioPrincipal(String nombre, String userName, String email, String password, Collection<? extends GrantedAuthority> authorities) {
         this.nombre = nombre;
-        this.nombreUsuario = nombreUsuario;
+        this.userName= userName;
         this.email = email;
         this.password = password;
         this.authorities = authorities;
     }
-public static UsuarioPrincipal build(Usuario usuario) {
-        List<GrantedAuthority> authorities = usuario.getRoles().stream()
-                .map(rol -> new SimpleGrantedAuthority(rol.getRolNombre().name())).collect(Collectors
-                .toList());
-        return new UsuarioPrincipal(usuario.getNombre(), usuario.getNombreUsuario(), usuario.getEmail(),
-                 usuario.getPassword(), authorities);
+
+    public static UsuarioPrincipal build(Usuario usuario) {
+        List<GrantedAuthority> authorities = usuario.getRoles()
+                .stream()
+                .map(rol -> new SimpleGrantedAuthority(rol.getRolNombre().name()))
+                .collect(Collectors.toList());
+        return new UsuarioPrincipal(usuario.getNombre(), usuario.getUsername(), usuario.getEmail(),
+                usuario.getPassword(), authorities);
     }
 
     @Override
@@ -52,17 +55,16 @@ public static UsuarioPrincipal build(Usuario usuario) {
 
     @Override
     public String getUsername() {
-        return nombreUsuario;
+        return userName;
     }
-    
+
     public String getNombre() {
         return nombre;
     }
-    
+
     public String getEmail() {
         return email;
     }
-   
 
     @Override
     public boolean isAccountNonExpired() {
@@ -83,6 +85,25 @@ public static UsuarioPrincipal build(Usuario usuario) {
     public boolean isEnabled() {
         return true;
     }
-    
-    
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public void setUsername(String userName) {
+        this.userName = userName;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setAuthorities(Collection<? extends GrantedAuthority> authorities) {
+        this.authorities = authorities;
+    }
+
 }

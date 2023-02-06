@@ -11,8 +11,7 @@ import javax.validation.constraints.NotBlank;
  * @author EURO
  */
 public class dtoExperiencia {
-    @NotBlank
-    private Long id;
+   
     @NotBlank
     private String nombre_experiencia;
     @NotBlank
@@ -25,22 +24,15 @@ public class dtoExperiencia {
     public dtoExperiencia() {
     }
 
-    public dtoExperiencia(Long id, String nombre_experiencia, String duracion_experiencia, String descripcion_experiencia, int persona_id) {
-        this.id = id;
+    public dtoExperiencia(String nombre_experiencia, String duracion_experiencia, String descripcion_experiencia, int persona_id) {
         this.nombre_experiencia = nombre_experiencia;
         this.duracion_experiencia = duracion_experiencia;
         this.descripcion_experiencia = descripcion_experiencia;
         this.persona_id = persona_id;
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
+    
+    
     public String getNombre_experiencia() {
         return nombre_experiencia;
     }

@@ -6,45 +6,96 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import lombok.Getter;
-import lombok.Setter;
 
-@Getter @Setter
+
+
 @Entity
 public class Educacion {
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     private Long id;
     @Basic
-    private String fecha_inicio;
-    private String fecha_egreso;
     private String titulo;
-    private String Institucion;
+    private String institucion;
+    private String fecha_egreso;
+    private String fecha_inicio;
     private int persona_id;
 
     public Educacion() {
     }
 
-      
-
-    public Educacion(Long id, String fecha_inicio, String fecha_egreso, String titulo, String Institucion, int persona_id) {
+    public Educacion(Long id, String titulo, String institucion, String fecha_egreso, String fecha_inicio, int persona_id) {
         this.id = id;
-        this.fecha_inicio = fecha_inicio;
-        this.fecha_egreso = fecha_egreso;
         this.titulo = titulo;
-        this.Institucion = Institucion;
+        this.institucion = institucion;
+        this.fecha_egreso = fecha_egreso;
+        this.fecha_inicio = fecha_inicio;
         this.persona_id = persona_id;
     }
-     /*@Override
-    public String toString(){
-        return "Educacion{" +
-                "id=" + id +
-                ", fechaInicio='" + fecha_inicio + '\'' +
-                ", fechaEgreso='" + fecha_egreso + '\'' +
-                ", titulo='" + titulo + '\'' +
-                ", Institucion='" + Institucion + '\'' +
-                ", url persona='" + persona + '\'' +
-                '}';
+
+   /* public Educacion(String titulo, String institucion, String fecha_egreso, String fecha_inicio, int persona_id) {
+        this.titulo = titulo;
+        this.institucion = institucion;
+        this.fecha_egreso = fecha_egreso;
+        this.fecha_inicio = fecha_inicio;
+        this.persona_id = persona_id;
+    }*/
+    
+
+    public Long getId() {
+        return id;
     }
-*/
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getTitulo() {
+        return titulo;
+    }
+
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
+    }
+
+    public String getInstitucion() {
+        return institucion;
+    }
+
+    public void setInstitucion(String institucion) {
+        this.institucion = institucion;
+    }
+
+    public String getFecha_egreso() {
+        return fecha_egreso;
+    }
+
+    public void setFecha_egreso(String fecha_egreso) {
+        this.fecha_egreso = fecha_egreso;
+    }
+
+    public String getFecha_inicio() {
+        return fecha_inicio;
+    }
+
+    public void setFecha_inicio(String fecha_inicio) {
+        this.fecha_inicio = fecha_inicio;
+    }
+
+    public int getPersona_id() {
+        return persona_id;
+    }
+
+    public void setPersona_id(int persona_id) {
+        this.persona_id = persona_id;
+    }
+
+    @Override
+    public String toString() {
+        return "Educacion{" + "id=" + id + ", titulo=" + titulo + ", institucion=" + institucion + ", fecha_egreso=" + fecha_egreso + ", fecha_inicio=" + fecha_inicio + ", persona_id=" + persona_id + '}';
+    }
+
+    
+
+    
 }

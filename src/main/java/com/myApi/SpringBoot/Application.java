@@ -20,8 +20,8 @@ public class Application {
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
     }
-    /*corsConfiguration.setAllowedOrigins(Arrays.asList("https://perrotta-vicente.web.app/"));*/
-      
+    
+   /* 
     @Bean
     public CorsFilter corsFilter() {
       CorsConfiguration corsConfiguration = new CorsConfiguration();
@@ -40,5 +40,5 @@ public class Application {
       urlBasedCorsConfigurationSource.registerCorsConfiguration("/**", corsConfiguration);
       return new CorsFilter(urlBasedCorsConfigurationSource);
     }
-     
+   */
 }

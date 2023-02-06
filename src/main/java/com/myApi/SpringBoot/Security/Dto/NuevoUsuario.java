@@ -6,16 +6,22 @@ package com.myApi.SpringBoot.Security.Dto;
 
 import java.util.HashSet;
 import java.util.Set;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 
 /**
  *
  * @author EURO
  */
 public class NuevoUsuario {
-       
-    private String nombre;    
-    private String nombreUsuario;
+    @NotBlank   
+    private String nombre;  
+    @NotBlank   
+    private String userName;
+    @NotBlank   
+    @Email
     private String email;
+    @NotBlank
     private String password;
     private Set<String> roles = new HashSet<>();
 
@@ -27,12 +33,12 @@ public class NuevoUsuario {
         this.nombre = nombre;
     }
 
-    public String getNombreUsuario() {
-        return nombreUsuario;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setNombreUsuario(String nombreUsuario) {
-        this.nombreUsuario = nombreUsuario;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public String getEmail() {

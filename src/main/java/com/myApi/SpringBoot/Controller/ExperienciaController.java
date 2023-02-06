@@ -29,24 +29,28 @@ public class ExperienciaController {
     ExperienciaService experienciaService;
 
     /*Método GET*/
+   @PreAuthorize("permitAll")
     @GetMapping("/experiencia/todas")
     public ResponseEntity<List<Experiencia>> getAllEstudios() {
         List<Experiencia> experiencia = experienciaService.listarExperiencias();
         return new ResponseEntity<>(experiencia, HttpStatus.OK);
     }
     /*otra forma de obtener listado */
+    @PreAuthorize("permitAll")
     @GetMapping("/experiencia2/all")
     @ResponseBody
     public List<Experiencia> buscarTodas() {
         return experienciaService.listarExperiencias();
     }
     
-        
+     @PreAuthorize("permitAll")   
     @GetMapping ("/experiencia/obtener/{id}")
     @ResponseBody
     public Experiencia obtenerExperiencia(@PathVariable Long id) {
         return experienciaService.obtenerExperiencia(id);
     }
+    
+    @PreAuthorize("permitAll")
      @GetMapping("/experiencia/{id}")
     public ResponseEntity<Experiencia> findExperiencia(@PathVariable("id") Long id) {
         Experiencia experienciaLaboral = experienciaService.obtenerExperiencia(id);

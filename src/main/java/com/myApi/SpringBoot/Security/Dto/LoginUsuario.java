@@ -12,18 +12,18 @@ import javax.validation.constraints.NotBlank;
  */
 public class LoginUsuario {
      @NotBlank
-    private String nombreUsuario;
+    private String userName;
     @NotBlank
-    
     private String password;
-//getter y setter
 
-    public String getNombreUsuario() {
-        return nombreUsuario;
+
+//getter y setter
+    public String getUserName() {
+        return userName;
     }
 
-    public void setNombreUsuario(String nombreUsuario) {
-        this.nombreUsuario = nombreUsuario;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public String getPassword() {

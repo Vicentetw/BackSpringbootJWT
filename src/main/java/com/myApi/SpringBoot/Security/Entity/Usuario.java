@@ -24,12 +24,12 @@ import javax.validation.constraints.NotNull;
 public class Usuario{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private int id;
     @NotNull
     private String nombre;
     @NotNull
     @Column(unique = true)
-    private String nombreUsuario;
+    private String userName;
     @NotNull
     private String email;
     @NotNull
@@ -42,18 +42,18 @@ public class Usuario{
     public Usuario() {
     }
 
-    public Usuario(String nombre, String nombreUsuario, String email, String password) {
+    public Usuario(String nombre, String userName, String email, String password) {
         this.nombre = nombre;
-        this.nombreUsuario = nombreUsuario;
+        this.userName = userName;
         this.email = email;
         this.password = password;
     }
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -65,12 +65,12 @@ public class Usuario{
         this.nombre = nombre;
     }
 
-    public String getNombreUsuario() {
-        return nombreUsuario;
+    public String getUsername() {
+        return userName;
     }
 
-    public void setNombreUsuario(String nombreUsuario) {
-        this.nombreUsuario = nombreUsuario;
+    public void setUsername(String userName) {
+        this.userName = userName;
     }
 
     public String getEmail() {
@@ -95,6 +95,11 @@ public class Usuario{
 
     public void setRoles(Set<Rol> roles) {
         this.roles = roles;
+    }
+
+    @Override
+    public String toString() {
+        return "Usuario{" + "id=" + id + ", nombre=" + nombre + ", userName=" + userName + ", email=" + email + ", password=" + password + ", roles=" + roles + '}';
     }
     
     

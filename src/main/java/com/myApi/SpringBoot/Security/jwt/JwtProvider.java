@@ -37,19 +37,25 @@ private int expiration;
 
 public String generateToken (Authentication authentication){
 UsuarioPrincipal usuarioPrincipal = (UsuarioPrincipal) authentication.getPrincipal();
-        return Jwts.builder().setSubject(usuarioPrincipal.getUsername())
+
+List<String> roles = usuarioPrincipal.getAuthorities().stream().map(GrantedAuthority::getAuthority).collect(Collectors.toList());
+return Jwts.builder().setSubject(usuarioPrincipal.getUsername())
+                .claim("roles", roles)
                 .setIssuedAt(new Date())
-                .setExpiration(new Date(new Date().getTime()+expiration*1000))
-                .signWith(SignatureAlgorithm.HS512, secret)
-                .compact();
+                .setExpiration(new Date(new Date().getTime()+ expiration*10000))
+                //.signWith(SignatureAlgorithm.HS512, secret.getBytes())
+        .signWith(SignatureAlgorithm.HS512, secret).compact();
     }
-public String getNombreUsuarioFromToken(String token) {
+public String getUsernameFromToken(String token) {
         return Jwts.parser().setSigningKey(secret).parseClaimsJws(token).getBody().getSubject();
 }
 public boolean validateToken(String token){
         try{
             Jwts.parser().setSigningKey(secret).parseClaimsJws(token);
+//.getBody().getSubject();
+           
             return true;
+            
         }catch (MalformedJwtException e){
             logger.error("Token mal formado");
         }catch (UnsupportedJwtException e){
