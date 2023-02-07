@@ -21,12 +21,12 @@ public class Application {
         SpringApplication.run(Application.class, args);
     }
     
-   /* 
+    
     @Bean
     public CorsFilter corsFilter() {
       CorsConfiguration corsConfiguration = new CorsConfiguration();
       corsConfiguration.setAllowCredentials(true);
-      corsConfiguration.setAllowedOrigins(Arrays.asList("http://localhost:8080"));
+      corsConfiguration.setAllowedOrigins(Arrays.asList("http://localhost:4200"));
       corsConfiguration.setAllowedHeaders(Arrays.asList("Origin",
       "Access-Control-Allow-Origin", "Content-Type", "Accept", "Authorization",
       "Origin, Accept", "X-Request-With", "Access-Control-Request-Method",
@@ -40,5 +40,17 @@ public class Application {
       urlBasedCorsConfigurationSource.registerCorsConfiguration("/**", corsConfiguration);
       return new CorsFilter(urlBasedCorsConfigurationSource);
     }
-   */
+   
+    /* @Bean
+  public CorsFilter corsFilter() {
+    CorsConfiguration corsConfiguration = new CorsConfiguration();
+    corsConfiguration.setAllowedOrigins(Arrays.asList("http://localhost:4200"));
+    corsConfiguration.setAllowedMethods(Arrays.asList("GET", "POST"));
+    corsConfiguration.setAllowCredentials(true);
+
+    UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+    source.registerCorsConfiguration("/**", corsConfiguration);
+
+    return new CorsFilter(source);
+  }*/
 }
