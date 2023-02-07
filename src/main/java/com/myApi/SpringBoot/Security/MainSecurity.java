@@ -160,6 +160,7 @@ public class MainSecurity extends WebSecurityConfigurerAdapter {
                 .and()
                 .authorizeRequests()
                // .antMatchers("/modifica/**").hasRole("ADMIN")
+                .antMatchers(HttpMethod.POST, "/auth/login/**").permitAll()
                 .antMatchers("/modifica/**").permitAll()
                 .antMatchers("/auth/**").permitAll()
                 .antMatchers("/auth/login").permitAll()
