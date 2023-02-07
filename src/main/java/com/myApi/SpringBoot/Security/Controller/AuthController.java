@@ -114,7 +114,7 @@ public class AuthController {
         
         return new ResponseEntity(new Mensaje("Usuario guardado"),HttpStatus.CREATED);
     }
-    
+    @PreAuthorize("permitAll")
     @PostMapping("/login")
     public ResponseEntity<JwtDto> login(@Valid @RequestBody LoginUsuario loginUsuario, BindingResult bindingResult){
         if(bindingResult.hasErrors())
