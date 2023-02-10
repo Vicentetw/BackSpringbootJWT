@@ -45,6 +45,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @author EURO
  */
 @RestController
+@PreAuthorize("permitAll")
 @RequestMapping("/auth")
 @CrossOrigin
 public class AuthController {
