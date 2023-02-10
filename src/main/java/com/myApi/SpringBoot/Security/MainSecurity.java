@@ -148,22 +148,22 @@ public class MainSecurity extends WebSecurityConfigurerAdapter {
     */
     
     
-/*@Override
+@Override
     protected void configure(HttpSecurity http) throws Exception {
         
         http.cors().and().csrf().disable()
-                .headers()
-                //.xssProtection().disable()
-                //.frameOptions().sameOrigin()
+                .headers().xssProtection().disable()
+                .frameOptions().sameOrigin()
        .addHeaderWriter(
         new XFrameOptionsHeaderWriter(
            XFrameOptionsHeaderWriter.XFrameOptionsMode.SAMEORIGIN))
                 .and()
                 .authorizeRequests()
                // .antMatchers("/modifica/**").hasRole("ADMIN")
-                .antMatchers(HttpMethod.POST, "/auth/login").permitAll()
-                .antMatchers(HttpMethod.POST,"/modifica/**").permitAll()
-                .antMatchers(HttpMethod.POST,"/auth/**").permitAll()
+                .antMatchers(HttpMethod.POST, "/auth/login/**").permitAll()
+                .antMatchers("/modifica/**").permitAll()
+                .antMatchers("/auth/**").permitAll()
+                .antMatchers("/auth/login").permitAll()
                 .antMatchers(HttpMethod.GET, "/**").permitAll()
                 .antMatchers(HttpMethod.GET, "/modifica").permitAll()
                 .antMatchers(HttpMethod.GET, "/experiencia/**").permitAll()
@@ -179,31 +179,7 @@ public class MainSecurity extends WebSecurityConfigurerAdapter {
         http.addFilterBefore(jwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
         
     }
-*/
 
-@Override
-protected void configure(HttpSecurity http) throws Exception {
-    http.cors().and().csrf().disable()
-        .headers()
-        .contentTypeOptions().and()
-        .addHeaderWriter(
-            new XFrameOptionsHeaderWriter(
-                XFrameOptionsHeaderWriter.XFrameOptionsMode.SAMEORIGIN))
-        .and()
-        .authorizeRequests()
-        .antMatchers(HttpMethod.POST, "/auth/login").permitAll()
-        .antMatchers(HttpMethod.POST, "/modifica/**").permitAll()
-        .antMatchers(HttpMethod.GET, "/**").permitAll()
-        .antMatchers(HttpMethod.GET, "/modifica").permitAll()
-        .antMatchers(HttpMethod.GET, "/educacion/all").permitAll()
-        .antMatchers(HttpMethod.DELETE, "/**").permitAll()
-        .anyRequest().authenticated()
-        .and()
-        .exceptionHandling().authenticationEntryPoint(jwtEntryPoint)
-        .and()
-        .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-    http.addFilterBefore(jwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
-}
 
     
 }
